@@ -1,0 +1,22 @@
+body{
+    font-family: 'Merriweather', serif;
+}
+/* .imgstyling{
+    height: 350px;
+    width: 460px;
+    border-radius: 50px;
+}
+.navh{
+    height: 50px;
+} */
+.webfoot{
+    bottom: auto;
+}
+/* @media only screen and (max-width: 500px){
+    .overideBoot{
+        align-content: center !important;
+        text-align: center !important;
+        position: relative !important;
+        
+    }
+} */
