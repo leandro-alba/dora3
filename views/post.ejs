@@ -1,0 +1,109 @@
+<%- include('partials/feedheader') -%>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+      <div class="col-lg-3">
+        <a href="/"><button class="btn btn-danger" >return to feed</button></a>
+      </div>
+      <div class="col-lg-6">
+
+        <div class="text-bg-light card card-body">
+          <p>Question made by <strong><%= post.user.userName%></strong> </p>
+          <div class="col-lg-2">
+            tags: <span class="badge rounded-pill text-bg-info"><%= post.tag %></span>
+          </div>
+            <% if(post.image){ %>
+            <img class="img-fluid mb-3" src="<%=post.image%>" />
+            <% }else{ %>
+
+            <% } %>
+        
+
+          <div class="row justify-content-between"> 
+            
+            <h2><%= post.question %></h2>
+            <p><%= post.description %></p>
+            <span class="text-muted">asked on <%= post.createdAt.toDateString() %></span>
+
+            <ul class="list-unstyled d-flex">
+              <li><form class="" action="/post/likePost/<%= post.id %>?_method=PUT" method="POST"><!-- was col-lg-3 before -->
+                <button class="btn fa fa-heart" type="submit"></button><span class="fs-5"> <%=post.likes%></span>
+              </form>
+              </li>
+              <li>
+              <form
+                class=""
+                action="/post/faceLolPost/<%= post.id %>?_method=PUT"
+                method="POST"
+              >
+                <button class="btn" type="submit"><i class="fa-regular fa-face-grin-tears"></i></button><span class="fs-5"> <%=post.faceLol%></span>
+              </form>
+              </li>
+              <li>
+              <form
+                class=""
+                action="/post/faceSwearPost/<%= post.id %>?_method=PUT"
+                method="POST"
+              >
+                <button class="btn" type="submit"><i class="fa-regular fa-face-angry"></i></button><span class="fs-5"> <%=post.faceSwear%></span>
+              </form>
+              </li>
+              <li><form
+                class=""
+                action="/post/faceSadPost/<%= post.id %>?_method=PUT"
+                method="POST"
+              >
+                <button class="btn" type="submit"><i class="fa-regular fa-face-sad-tear"></i></button><span class="fs-5"> <%=post.faceSad%></span>
+              </form></li>
+              
+            </ul>
+            <%if(post.user.id == user.id){ %>
+              <form
+                action="/post/deletePost/<%= post.id %>?_method=DELETE"
+                method="POST"
+                class=""
+              >
+                <button class="btn btn-danger fa fa-trash d-flex justify-content-end" type="submit"></button>
+              </form>
+              <%}%>
+           
+          </div>
+        </div>
+          <div class="mt-5 card card-body mb-3 text-bg-light">
+            <h4>Add an Answer</h4>
+            <form action="/answer/createAnswer/<%=post.id %>" method="POST"> 
+              <div class="mb-3">
+                 
+                  <input type="text" class="form-control" id="answer" name="answer" >
+              </div>
+              <button type="submit" class="btn btn-danger " >Submit</button> 
+              
+            </form>
+          </div>
+        
+        <ul class="list-unstyled">
+          <% for(var i=0; i<answers.length; i++) {%>
+  
+            <div class="card ">
+              <div class="row g-0 text-bg-light">
+                <li>
+                  <div class="">
+                    <div class="card-body ">
+                  
+                      <p class="card-text"><%= answers[i].answer%></p>
+                      <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].userName%></strong> <span class="text-info">on</span> <%=answers[i].createdAt.toDateString()%></small></p>
+                      
+                    </div>
+                  </div>
+              
+              </div>
+            </div>
+          </li>
+          <% } %>
+      </ul>
+      </div>
+      <div class="col-lg-3"></div>
+  </div>
+</div>
+
+<% console.log(answers) %>
+<%- include('partials/footer') -%>

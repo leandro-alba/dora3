@@ -13,5 +13,9 @@ module.exports = {
         res.redirect("/dashboard");
       }
     },
+    isLoggedIn: function(req,res,next){
+      res.locals.loggedIn = req.isAuthenticated();
+      next();
+    }
   };
   

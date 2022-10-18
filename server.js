@@ -8,9 +8,12 @@ const methodOverride = require("method-override");
 const flash = require("express-flash");
 const logger = require("morgan");
 const connectDB = require("./config/database");
-// const mainRoutes = require("./routes/main");
-// const postRoutes = require("./routes/posts");
-// const answerRoutes = require("./routes/answers");
+const mainRoutes = require("./routes/main");
+const postRoutes = require("./routes/posts");
+
+const {isLoggedIn} = require('./middleware/auth')
+const { application } = require("express");
+const answerRoutes = require("./routes/answers");
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
@@ -52,12 +55,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //Use flash messages for errors, info, ect...
+app.use(isLoggedIn);
 app.use(flash());
 
+
 //Setup Routes For Which The Server Is Listening
-// app.use("/", mainRoutes);
-// app.use("/post", postRoutes);
-// app.use("/answer", answerRoutes);
+app.use("/", mainRoutes);
+app.use("/post", postRoutes);
+app.use("/answer", answerRoutes);
 
 //Server Running
 app.listen(process.env.PORT, () => {

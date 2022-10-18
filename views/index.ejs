@@ -1,0 +1,87 @@
+<%- include('partials/feedheader') -%>
+
+<div class="container">
+    <div class="row mt-5">
+      <div class="col-lg-3"></div>
+      <ul class="col-lg-6 list-unstyled">
+        <% for(var i=0; i<posts.length; i++) {%>
+          <li>
+            <div class="card mb-3 shadow">
+              <% if(posts[i].image){ %>
+                <img src="<%=posts[i].image%>" class="card-img-top" alt="...">
+              <%}else{ %>
+
+              <% } %>
+              <div class="card-body">
+                <a href="/post/<%=posts[i]._id%>"><h5 class="card-title"><%=posts[i].question%></h5></a>
+                <p class="card-text"><%=posts[i].description%></p>
+                <p class="card-text"><small class="text-muted">Asked by <%=posts[i].user.userName%> on</small><small class="text-muted"> <%=posts[i].createdAt.toDateString()%> |</small><small class="text-danger"><%=posts[i].likes%></small><small class="fa fa-heart text-danger"></small>|<small class=""><%=posts[i].faceLol%></small><i class="fa-regular fa-face-grin-tears"></i>|<small class=""><%=posts[i].faceSwear%></small><i class="fa-regular fa-face-angry"></i>|<small class=""><%=posts[i].faceSad%></small><i class="fa-regular fa-face-sad-tear"></i></p>
+              </div>
+            </div>
+               
+            
+          </li><hr>
+        <% } %>
+        </ul>
+        <div class="col-lg-3">
+            <img src="https://i.ibb.co/7K405sp/cover.png" alt="#" class="img-fluid">
+            <div class="card card-body text-bg-light">
+              <h5 class="card-title border-bottom mb-3">What is Dora? <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#whatDora" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button></h5>
+              <div class="collapse" id="whatDora">
+                <div class="card card-body">
+                  Dora is a social Question and Answer Web App. Users come here to ask questions and other Users answer them!
+                </div>
+              </div>
+              <!-- next question -->
+              <h5 class="card-title border-bottom mb-3">Why use Dora? <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#whyDora" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button></h5>
+              <div class="collapse" id="whyDora">
+                <div class="card card-body">
+                  Dora lets anyone access it's content unlike other sites that require users to make an account! Think about everytime you are blocked from content unless you make an account... how annoying! Sometimes you just need to see that one specific post but cant because you need to sign up first. All content is free on Dora, no account needed to access it!
+                </div>
+              </div>
+              <!-- next question -->
+              <h5 class="card-title border-bottom mb-3">Do I need an account to access the content on Dora? <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#whoDora" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button></h5>
+              <div class="collapse" id="whoDora">
+                <div class="card card-body">
+                  Absolutly not!
+                </div>
+              </div>
+              <!-- next question -->
+              <h5 class="card-title border-bottom mb-3">Can I post without an account? <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#Dora01" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button></h5>
+              <div class="collapse" id="Dora01">
+                <div class="card card-body">
+                  no, if you want to answer someone's question, or post a question, you'll need an account.
+                </div>
+              </div>
+              <!-- next question -->
+              <h5 class="card-title border-bottom">How to report someone's Question or Answer? <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#Dora02" aria-expanded="false" aria-controls="collapseExample">
+                <i class="fa-solid fa-chevron-down"></i>
+              </button></h5>
+              <div class="collapse" id="Dora02">
+                <div class="card card-body">
+                  Send an email to {insert email link} with a screenshot.
+                </div>
+              </div>
+            </div>
+            <span class="text-muted row justify-content-center">github | linkedln | twitter </span>
+           
+        </div>
+    </div>
+    
+</div> 
+
+<!-- <div class="col-1 d-flex justify-content-end">
+  <button class="btn btn-sm btn-outline-warning" type="button" data-bs-toggle="collapse" data-bs-target="#whatDora" aria-expanded="false" aria-controls="collapseExample">
+    <i class="fa-solid fa-chevron-down"></i>
+  </button>
+</div> -->
+
+<%- include('partials/footer') -%>

@@ -1,0 +1,30 @@
+<%- include('partials/feedheader') -%>
+
+<div class="container">
+    <div class="row mt-5">
+      <ul class="col-lg-9 list-unstyled">
+        <% for(var i=0; i<posts.length; i++) {%>
+          <li>
+            <div class="card mb-3 shadow">
+              <img src="<%=posts[i].image%>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <a href="/post/<%=posts[i]._id%>"><h5 class="card-title"><%=posts[i].question%></h5></a>
+                <p class="card-text"><%=posts[i].description%></p>
+                <p class="card-text"><small class="text-muted">Created by <%=posts[i].user.userName%> on</small><small class="text-muted"> <%=posts[i].createdAt.toDateString()%> |</small><small class="text-danger"><%=posts[i].likes%></small><small class="fa fa-heart text-danger"></small></p>
+              </div>
+            </div>
+               
+            
+          </li><hr>
+        <% } %>
+        </ul>
+        <div class="col-lg-3">
+            <img src="https://i.ibb.co/7K405sp/cover.png" alt="#" class="img-fluid border-bottom">
+            <span class="text-muted row justify-content-center">github | linkedln | twitter </span>
+           
+        </div>
+    </div>
+    
+</div> 
+
+<%- include('partials/footer') -%>
