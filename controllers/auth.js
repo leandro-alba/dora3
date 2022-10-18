@@ -86,6 +86,7 @@ exports.postSignup = (req, res, next) => {
   });
 
   const user = new User({
+    //profileImg: 'https://res.cloudinary.com/dl4p8g2it/image/upload/v1661605296/cld-sample-5.jpg',
     userName: req.body.userName,
     email: req.body.email,
     password: req.body.password,

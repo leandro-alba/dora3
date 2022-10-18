@@ -36,27 +36,7 @@ module.exports = {
     }
   },
   createPost: async (req, res) => {
-    // try {
-      // Upload image to cloudinary
-    //   const result = await cloudinary.uploader.upload(req.file.path);
-
-    //   await Post.create({
-    //     question: req.body.title,
-    //     description: req.body.description,
-    //     tag: req.body.tag,
-    //     image: result.secure_url,
-    //     cloudinaryId: result.public_id,
-    //     //caption: req.body.caption,
-    //     likes: 0,
-    //     faceLol: 0,
-    //     faceSwear: 0,
-    //     user: req.user.id,
-    //   });
-    //   console.log("Post has been added!");
-    //   res.redirect("/profile");
-    // } catch (err) {
-    //   console.log(err);
-    // }
+   
     try{
       const post = {
         question: req.body.title,
@@ -141,12 +121,15 @@ module.exports = {
       // Find post by id
       let post = await Post.findById({ _id: req.params.id });
       // Delete image from cloudinary
-      await cloudinary.uploader.destroy(post.cloudinaryId);
+      if(post.image){//I coded this shit! :D XD :')
+        await cloudinary.uploader.destroy(post.cloudinaryId);
+      }
       // Delete post from db
-      await Post.remove({ _id: req.params.id });
+      await Post.deleteOne({ _id: req.params.id });
       console.log("Deleted Post");
       res.redirect("/profile");
     } catch (err) {
+      console.log(err)
       res.redirect("/profile");
     }
   },
