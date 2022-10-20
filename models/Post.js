@@ -25,6 +25,9 @@ const PostSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  likedBy:[{//likeBy is used to control our likes. so that users can only like a post once or they can take their like back!
+    type: mongoose.Schema.Types.ObjectId//notice that its in an array
+  }],
   faceLol:{ //<i class="fa-regular fa-face-grin-tears"></i>
     type: Number,
     required: true,

@@ -7,7 +7,7 @@
       <div class="col-lg-6">
 
         <div class="text-bg-light card card-body">
-          <p>Question made by <strong><%= post.user.userName%></strong> </p>
+          <p>Question made by <strong><%=post.user.userName%></strong> </p>
           <div class="col-lg-2">
             tags: <span class="badge rounded-pill text-bg-info"><%= post.tag %></span>
           </div>
@@ -91,7 +91,11 @@
                   
                       <p class="card-text"><%= answers[i].answer%></p>
                       <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].userName%></strong> <span class="text-info">on</span> <%=answers[i].createdAt.toDateString()%></small></p>
-                      
+                      <%if(user.userName == answers[i].userName){ %>
+                        <form action="/answer/deleteAnswer/<%=answers[i]._id%>?_method=DELETE" method="POST">
+                          <button class="btn btn-outline-danger fa fa-trash " type="submit"></button>
+                        </form>
+                      <% } %>
                     </div>
                   </div>
               
@@ -105,5 +109,6 @@
   </div>
 </div>
 
+<% console.log(post.user.userName) %>
 <% console.log(answers) %>
 <%- include('partials/footer') -%>

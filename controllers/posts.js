@@ -62,13 +62,31 @@ module.exports = {
   },
   likePost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { likes: 1 },
-        }
-      );
-      console.log("Likes +1");
+      const post = await Post.findById(req.params.id)
+      if(post.likedBy.includes(req.user.id)){
+        await Post.findByIdAndUpdate(req.params.id,{
+          $inc:{
+            likes: -1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $pull:{
+            likedBy: req.user.id
+          }
+        })  
+      }else{
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: {
+            likes: 1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $push: {
+            likedBy: req.user.id
+          }
+        })
+      }
+      console.log("Likes +/-1");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -76,13 +94,31 @@ module.exports = {
   },
   faceLolPost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { faceLol: 1 },
-        }
-      );
-      console.log("facelol +1");
+      const post = await Post.findById(req.params.id)
+      if(post.likedBy.includes(req.user.id)){
+        await Post.findByIdAndUpdate(req.params.id,{
+          $inc:{
+            faceLol: -1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $pull:{
+            likedBy: req.user.id
+          }
+        })  
+      }else{
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: {
+            faceLol: 1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $push: {
+            likedBy: req.user.id
+          }
+        })
+      }
+      console.log("facelol +/-1");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -90,13 +126,31 @@ module.exports = {
   },
   faceSwearPost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { faceSwear: 1 },
-        }
-      );
-      console.log("faceswear +1");
+      const post = await Post.findById(req.params.id)
+      if(post.likedBy.includes(req.user.id)){
+        await Post.findByIdAndUpdate(req.params.id,{
+          $inc:{
+            faceSwear: -1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $pull:{
+            likedBy: req.user.id
+          }
+        })  
+      }else{
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: {
+            faceSwear: 1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $push: {
+            likedBy: req.user.id
+          }
+        })
+      }
+      console.log("faceSwear +/-1");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
@@ -104,13 +158,31 @@ module.exports = {
   },
   faceSadPost: async (req, res) => {
     try {
-      await Post.findOneAndUpdate(
-        { _id: req.params.id },
-        {
-          $inc: { faceSad: 1 },
-        }
-      );
-      console.log("facesad +1");
+      const post = await Post.findById(req.params.id)
+      if(post.likedBy.includes(req.user.id)){
+        await Post.findByIdAndUpdate(req.params.id,{
+          $inc:{
+            faceSad: -1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $pull:{
+            likedBy: req.user.id
+          }
+        })  
+      }else{
+        await Post.findByIdAndUpdate(req.params.id, {
+          $inc: {
+            faceSad: 1
+          }
+        })
+        await Post.findByIdAndUpdate(req.params.id, {
+          $push: {
+            likedBy: req.user.id
+          }
+        })
+      }
+      console.log("faceSad +1");
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);

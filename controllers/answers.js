@@ -1,8 +1,11 @@
 const Answer = require("../models/Answer");
+const User = require("../models/User");
+const Post = require('../models/Post')
 
 module.exports = {
   createAnswer: async (req, res) => {
     try {
+      //const answerUser = await User.findById(req.user.id)
       await Answer.create({
         answer: req.body.answer,
         user: req.params.id,
@@ -19,12 +22,11 @@ module.exports = {
   },
   deleteAnswer: async (req,res) => {
     try{
-      let answer = await Answer.findById({ _id: req.params.id});
-      await Answer.remove({ _id: req.params.id});
+      await Answer.findByIdAndDelete({ _id: req.params.id});
       console.log('answer deleted')
-      res.redirect('/post/:id')
+      res.redirect('/')// so i cant get it to refresh atthe post where the answer was deleted so for now it will redirect to landingpage. But the important thing is taht the delete btn works!
     }catch(err){
-      res.redirect('/post/:id')
+      res.redirect('/')
     }
   }
 };
