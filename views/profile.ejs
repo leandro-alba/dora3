@@ -29,7 +29,7 @@
                             <textarea name="description" id="description"  class="form-control"></textarea>
                         </div>
                         <div class="mb-3">
-                            <label for="imgUpload" class="form-label">Image: (do not need one if you dont want to)</label>
+                            <label for="imgUpload" class="form-label">Image: (not required)</label>
                             <input type="file" class="form-control" id="imageUpload" name="file">
                         </div>
                         <div class="mb-3">
@@ -44,6 +44,9 @@
       </div>
       <!-- <div class="col-lg-3"></div> -->
       <div class="col-lg-6">
+        <% if(posts.length < 1){%>
+          <h3>You have not added a Question</h3>
+        <%}else{%>
         <ul class="row list-unstyled ">
             <% for(var i=0; i<posts.length; i++) {%>
               <li class=" justify-content-between mt-2 border text-bg-light">
@@ -55,9 +58,10 @@
               </li>
             <% } %>
             </ul>
+          <% } %> 
       </div>
       
-      <!-- Add a question END -->
+
     </div>
 </div>
 
