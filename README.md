@@ -3,6 +3,8 @@ Dora is a social Question and Anwswer web app, where users post questions and ot
 
 **link to project:** no live demo yet
 
+<img src="dora3.gif" width="100%">
+
 ![DORA](https://i.ibb.co/0QP9d6T/dora01.png)
 
 ![DORA User Question](https://i.ibb.co/wSqKpWS/dora04.png)
