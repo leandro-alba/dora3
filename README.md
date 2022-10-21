@@ -23,6 +23,9 @@ I had trouble with making the orginial poster's username appear on their post bu
 
 ## Examples:
 Take a look at these few examples that I have in my own portfolio:
+
 **Couch to 5k:** https://github.com/leandro-alba/c25k
+
 **Happy Notes:** https://github.com/leandro-alba/happy-notes
+
 **MVC lecture:** https://github.com/leandro-alba/simple-express-app-submission
