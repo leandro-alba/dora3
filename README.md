@@ -1,5 +1,5 @@
 # dora3
-Dora is a social Question and Anwswer web app, where users post questions and other users answer them. But why use Dora? Unlike other web app where you are blocked from viewing their content unless you sign up, Dora lets everyone access its content without making an account! However if users want to add a question or answer somone elses question then they will need to make an account. (Dora is currently in its 3rd evolution)
+Dora is a social Question and Answer web app, where users post questions and other users answer them. But why use Dora? Unlike other web app where you are blocked from viewing their content unless you sign up, Dora lets everyone access its content without making an account! However if users want to add a question or answer somone elses question then they will need to make an account. (Dora is currently in its 3rd evolution)
 
 **link to project:** no live demo yet
 
@@ -11,7 +11,7 @@ Dora is a social Question and Anwswer web app, where users post questions and ot
 
 ## How It's Made:
 
-**Texh used:** HTML, CSS, Javascript, EJS, Node.js, MongoDB, Mongoose, Cloudinary, Passport, Bcrypt, Express, Morgan, Multer
+**Tech used:** HTML, CSS, Javascript, EJS, Node.js, MongoDB, Mongoose, Cloudinary, Passport, Bcrypt, Express, Morgan, Multer, Bootstrap
 
 The first step I took to build Dora was to make...Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab odio eum voluptate hic asperiores voluptatum et laborum nulla assumenda in suscipit pariatur ratione, voluptates dolor maiores nisi dolorem eius nemo! Non cupiditate nihil tenetur illum facilis magni porro sunt aperiam maiores et corrupti, eaque sed, veritatis quasi, officia laboriosam aliquam eligendi fugiat enim dignissimos soluta!
 
