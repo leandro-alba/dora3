@@ -39,7 +39,7 @@ module.exports = {
    
     try{
       const post = {
-        question: req.body.title,
+        question: req.body.question,
          description: req.body.description,
          tag: req.body.tag,
           likes: 0,
@@ -203,6 +203,46 @@ module.exports = {
     } catch (err) {
       console.log(err)
       res.redirect("/profile");
+    }
+  },
+  getEditPage: async (req,res) => {//take user to an edit page
+    try{
+      const post = await Post.findById(req.params.id).lean()
+
+      res.render('editPost.ejs', { post: post })
+    }catch(err){
+      console.error(err)
+    }
+  },
+  editPost: async (req,res) => {//the update logic here
+    try{
+      // if(req.file){
+      //   await Post.findOneAndUpdate({_id: req.params.id },{
+      //     question: req.body.question,
+      //    description: req.body.description,
+      //    tag: req.body.tag,
+      //   })
+      //   let post = await Post.findById({ _id: req.params.id });
+      //   const result = await cloudinary.uploader.upload(req.file.path);
+      //   post['image'] = result.secure_url,
+      //   post['cloudinaryId'] = result.public_id
+      //   res.redirect('/')
+      // }else{
+      //   await Post.findOneAndUpdate({_id: req.params.id },{
+      //     question: req.body.question,
+      //    description: req.body.description,
+      //    tag: req.body.tag,
+      //   })
+      //   res.redirect('/')
+      // }
+      await Post.findByIdAndUpdate({_id: req.params.id },{
+             question: req.body.question,
+            description: req.body.description,
+            tag: req.body.tag,
+           })
+           res.redirect('/profile')
+    }catch(err){
+      console.error(err)
     }
   },
 };

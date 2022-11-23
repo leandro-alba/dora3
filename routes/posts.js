@@ -16,5 +16,10 @@ router.put("/faceSadPost/:id", postsController.faceSadPost);
 
 router.delete("/deletePost/:id", postsController.deletePost);
 
-
+// @description     Show update page
+// @route           GET /cards/updateCard/:id
+router.get('/editPage/:id', ensureAuth, postsController.getEditPage)//leads to edit page where user can edit thier post.
+// @description     Process edit form
+// @route           PUT /cards/updateCard
+router.put('/editPost/:id', ensureAuth, postsController.editPost)
 module.exports = router;

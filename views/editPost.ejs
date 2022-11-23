@@ -7,25 +7,26 @@
           <div class="card text-bg-light shadow">
             <div class="card-body">
               <div class="mt-5">
-                <h2 class="text-center">Add a question</h2>
-                <form action="/post/createPost" enctype="multipart/form-data" method="POST">
+                <h2 class="text-center">Edit your post here:</h2>
+                <form action="/post/editPost/<%=post._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                   <div class="mb-3">
                       <label for="question" class="form-label">Question title:</label>
-                      <input type="text" class="form-control" id="question" name="question">
+                      <textarea class="form-control" id="question" name="question"><%= post.question %></textarea>
                   </div>
                   <div class="mb-3">
                     <label for="description" class="form-label">go into detail about your question here:</label>
-                    <textarea class="form-control" id="description" name="description"></textarea>
+                    <textarea class="form-control" id="description" name="description"><%= post.description %></textarea>
                   </div>
+                  <div class="mb-3"><img src="<%=post.image%>" class="card-img-top" alt="..."></div>
                   <div class="mb-3">
                     <label for="imgUpload" class="form-label">Image, not required</label>
                     <input type="file" class="form-control" id="imageUpload" name="file">
                   </div>
                   <div class="mb-3">
                     <label for="" class="form-label">Tag:</label>
-                    <textarea class="form-control" id="tag" name="tag" rows="1"></textarea>
+                    <textarea class="form-control" id="tag" name="tag" rows="1"><%= post.tag %></textarea>
                   </div>
-                  <button type="submit" class="btn btn-danger position-relative top-0" value="Upload">Submit</button> 
+                  <button type="submit" class="btn btn-secondary position-relative top-0" value="Upload">Submit</button> 
                   <!-- <hr> -->
                 </form>
               </div>
@@ -40,7 +41,7 @@
    
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.19.1/ckeditor.js" integrity="sha512-Ooi9IbjM2SIDjQ02ENbPFuuORT8F8Rc+rowcYfLneDwKRxw1+gVVj5tciVmV/APnA/Ys+qy1MbNKK3k2EaAHcw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
        
         CKEDITOR.config.enterMode = CKEDITOR.ENTER_BR;
@@ -48,6 +49,6 @@
             plugins:'wysiwygarea, toolbar, basicstyles, link'
         })
         
-    </script>
+    </script> -->
 
 <%- include('partials/footer') -%>
