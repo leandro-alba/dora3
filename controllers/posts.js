@@ -235,12 +235,35 @@ module.exports = {
       //   })
       //   res.redirect('/')
       // }
-      await Post.findByIdAndUpdate({_id: req.params.id },{
-             question: req.body.question,
-            description: req.body.description,
+      // await Post.findByIdAndUpdate({_id: req.params.id },{
+      //        question: req.body.question,
+      //       description: req.body.description,
+      //       tag: req.body.tag,
+      //      })
+      //      res.redirect('/profile')
+
+      const result = await cloudinary.uploader.upload(req.file.path);
+      await Post.findOneAndUpdate(
+        {_id: req.params.id },
+        {
+          $inc: {
+            question: req.params.question,
+            description: req.params.description,
             tag: req.body.tag,
-           })
-           res.redirect('/profile')
+            image: result.secure_url,
+            cloudinaryId: result.public_id,
+          },
+        }
+      );
+      // await Post.findByIdAndUpdate(req.params.id, {
+      //   $inc: {
+      //     question: req.params.question,
+      //     description: req.params.description,
+      //     tag: req.body.tag,
+      //   },
+      // })
+      console.log('Post edited');
+      res.redirect(`/`)
     }catch(err){
       console.error(err)
     }

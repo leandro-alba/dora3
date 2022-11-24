@@ -21,5 +21,5 @@ router.delete("/deletePost/:id", postsController.deletePost);
 router.get('/editPage/:id', ensureAuth, postsController.getEditPage)//leads to edit page where user can edit thier post.
 // @description     Process edit form
 // @route           PUT /cards/updateCard
-router.put('/editPost/:id', ensureAuth, postsController.editPost)
+router.put('/editPost/:id', upload.single("file"), postsController.editPost)
 module.exports = router;
