@@ -216,45 +216,46 @@ module.exports = {
   },
   editPost: async (req,res) => {//the update logic here
     try{
-      // if(req.file){
-      //   await Post.findOneAndUpdate({_id: req.params.id },{
-      //     question: req.body.question,
-      //    description: req.body.description,
-      //    tag: req.body.tag,
-      //   })
-      //   let post = await Post.findById({ _id: req.params.id });
-      //   const result = await cloudinary.uploader.upload(req.file.path);
-      //   post['image'] = result.secure_url,
-      //   post['cloudinaryId'] = result.public_id
-      //   res.redirect('/')
-      // }else{
-      //   await Post.findOneAndUpdate({_id: req.params.id },{
-      //     question: req.body.question,
-      //    description: req.body.description,
-      //    tag: req.body.tag,
-      //   })
-      //   res.redirect('/')
-      // }
+      if(req.file){
+        await Post.findOneAndUpdate({_id: req.params.id },{
+          question: req.body.question,
+         description: req.body.description,
+         tag: req.body.tag,
+        })
+       let post = await Post.findById({ _id: req.params.id });
+        const result = await cloudinary.uploader.upload(req.file.path);
+        post['image'] = result.secure_url,
+        post['cloudinaryId'] = result.public_id
+        res.redirect('/')
+      }else{
+        await Post.findOneAndUpdate({_id: req.params.id },{
+          question: req.body.question,
+         description: req.body.description,
+         tag: req.body.tag,
+        })
+        res.redirect('/')
+      }
+
       // await Post.findByIdAndUpdate({_id: req.params.id },{
       //        question: req.body.question,
       //       description: req.body.description,
       //       tag: req.body.tag,
       //      })
-      //      res.redirect('/profile')
 
-      const result = await cloudinary.uploader.upload(req.file.path);
-      await Post.findOneAndUpdate(
-        {_id: req.params.id },
-        {
-          $inc: {
-            question: req.params.question,
-            description: req.params.description,
-            tag: req.body.tag,
-            image: result.secure_url,
-            cloudinaryId: result.public_id,
-          },
-        }
-      );
+      // const result = await cloudinary.uploader.upload(req.file.path);
+      // await Post.findOneAndUpdate(
+      //   {_id: req.params.id },
+      //   {
+      //     $inc: { //MongoServerError: Cannot increment with non-numeric argument: 
+      //       question: req.body.question,
+      //       description: req.body.description,
+      //       tag: req.body.tag,
+      //       image: result.secure_url,
+      //       cloudinaryId: result.public_id,
+      //     },
+      //   }
+      // );
+
       // await Post.findByIdAndUpdate(req.params.id, {
       //   $inc: {
       //     question: req.params.question,
@@ -262,8 +263,22 @@ module.exports = {
       //     tag: req.body.tag,
       //   },
       // })
+
+      // const result = await cloudinary.uploader.upload(req.file.path);
+      // let obj = {
+      //   question: req.body.question,
+      //   description: req.body.description,
+      //   tag: req.body.tag,
+      //   image: result.secure_url,
+      //   cloudinaryId: result.public_id,
+      // }
+      
+      //   await Post.findOneAndUpdate({_id: req.body.id},{
+      //     $set: obj,
+      //   })
+      
       console.log('Post edited');
-      res.redirect(`/`)
+      //res.redirect(`/`)
     }catch(err){
       console.error(err)
     }
