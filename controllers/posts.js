@@ -95,7 +95,7 @@ module.exports = {
   faceLolPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id)
-      if(post.likedBy.includes(req.user.id)){
+      if(post.likedByFaceLol.includes(req.user.id)){
         await Post.findByIdAndUpdate(req.params.id,{
           $inc:{
             faceLol: -1
@@ -103,7 +103,7 @@ module.exports = {
         })
         await Post.findByIdAndUpdate(req.params.id, {
           $pull:{
-            likedBy: req.user.id
+            likedByFaceLol: req.user.id
           }
         })  
       }else{
@@ -114,7 +114,7 @@ module.exports = {
         })
         await Post.findByIdAndUpdate(req.params.id, {
           $push: {
-            likedBy: req.user.id
+            likedByFaceLol: req.user.id
           }
         })
       }
@@ -127,7 +127,7 @@ module.exports = {
   faceSwearPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id)
-      if(post.likedBy.includes(req.user.id)){
+      if(post.likedByFaceSwear.includes(req.user.id)){
         await Post.findByIdAndUpdate(req.params.id,{
           $inc:{
             faceSwear: -1
@@ -135,7 +135,7 @@ module.exports = {
         })
         await Post.findByIdAndUpdate(req.params.id, {
           $pull:{
-            likedBy: req.user.id
+            likedByFaceSwear: req.user.id
           }
         })  
       }else{
@@ -146,7 +146,7 @@ module.exports = {
         })
         await Post.findByIdAndUpdate(req.params.id, {
           $push: {
-            likedBy: req.user.id
+            likedByFaceSwear: req.user.id
           }
         })
       }
@@ -159,7 +159,7 @@ module.exports = {
   faceSadPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id)
-      if(post.likedBy.includes(req.user.id)){
+      if(post.likedByFaceSad.includes(req.user.id)){
         await Post.findByIdAndUpdate(req.params.id,{
           $inc:{
             faceSad: -1
@@ -167,7 +167,7 @@ module.exports = {
         })
         await Post.findByIdAndUpdate(req.params.id, {
           $pull:{
-            likedBy: req.user.id
+            likedByFaceSad: req.user.id
           }
         })  
       }else{
@@ -178,7 +178,7 @@ module.exports = {
         })
         await Post.findByIdAndUpdate(req.params.id, {
           $push: {
-            likedBy: req.user.id
+            likedByFaceSad: req.user.id
           }
         })
       }
@@ -216,7 +216,7 @@ module.exports = {
   },
   editPost: async (req,res) => {//the update logic here
     try{
-      if(req.file){
+      if(req.file){//req.file
         await Post.findOneAndUpdate({_id: req.params.id },{
           question: req.body.question,
          description: req.body.description,
@@ -226,6 +226,7 @@ module.exports = {
         const result = await cloudinary.uploader.upload(req.file.path);
         post['image'] = result.secure_url,
         post['cloudinaryId'] = result.public_id
+        await post.save()//this replaces the old image with the new one, thank you to 100dev community for this line! 
         res.redirect('/')
       }else{
         await Post.findOneAndUpdate({_id: req.params.id },{
@@ -235,47 +236,6 @@ module.exports = {
         })
         res.redirect('/')
       }
-
-      // await Post.findByIdAndUpdate({_id: req.params.id },{
-      //        question: req.body.question,
-      //       description: req.body.description,
-      //       tag: req.body.tag,
-      //      })
-
-      // const result = await cloudinary.uploader.upload(req.file.path);
-      // await Post.findOneAndUpdate(
-      //   {_id: req.params.id },
-      //   {
-      //     $inc: { //MongoServerError: Cannot increment with non-numeric argument: 
-      //       question: req.body.question,
-      //       description: req.body.description,
-      //       tag: req.body.tag,
-      //       image: result.secure_url,
-      //       cloudinaryId: result.public_id,
-      //     },
-      //   }
-      // );
-
-      // await Post.findByIdAndUpdate(req.params.id, {
-      //   $inc: {
-      //     question: req.params.question,
-      //     description: req.params.description,
-      //     tag: req.body.tag,
-      //   },
-      // })
-
-      // const result = await cloudinary.uploader.upload(req.file.path);
-      // let obj = {
-      //   question: req.body.question,
-      //   description: req.body.description,
-      //   tag: req.body.tag,
-      //   image: result.secure_url,
-      //   cloudinaryId: result.public_id,
-      // }
-      
-      //   await Post.findOneAndUpdate({_id: req.body.id},{
-      //     $set: obj,
-      //   })
       
       console.log('Post edited');
       //res.redirect(`/`)

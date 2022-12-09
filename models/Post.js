@@ -32,14 +32,23 @@ const PostSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  likedByFaceLol:[{
+    type: mongoose.Schema.Types.ObjectId
+  }],
   faceSwear:{ //<i class="fa-regular fa-face-swear"></i>
     type: Number,
     required: true,
   },
+  likedByFaceSwear:[{
+    type: mongoose.Schema.Types.ObjectId
+  }],
   faceSad:{ //<i class="fa-regular fa-face-swear"></i>
     type: Number,
     required: true,
   },
+  likedByFaceSad:[{
+    type: mongoose.Schema.Types.ObjectId
+  }],
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",//referencing the User schema
