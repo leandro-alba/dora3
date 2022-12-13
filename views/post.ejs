@@ -56,16 +56,18 @@
               </form></li>
               
             </ul>
-            <%if(post.user.id == user.id){ %>
-              <form
+            <ul class="list-unstyled d-flex">
+              <% if(post.user.id == user.id){ %>
+              <li><form
                 action="/post/deletePost/<%= post.id %>?_method=DELETE"
                 method="POST"
                 class=""
               >
                 <button class="btn btn-danger fa fa-trash" type="submit"></button>
-              </form>
-              <a href="/post/editPage/<%= post.id %>"><button class="btn btn-outline-danger" >edit</button></a>
+              </form></li>
+              <li><a href="/post/editPage/<%= post.id %>" class="position-absolute end-0"><button class="btn btn-outline-danger" >edit</button></a></li>
               <%}%>
+            </ul>
           </div>
         </div>
           <div class="mt-5 card card-body mb-3 text-bg-light">
