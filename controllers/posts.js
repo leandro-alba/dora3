@@ -21,9 +21,10 @@ module.exports = {
   // },
   getPost: async (req, res) => {
     try {
+      //const user = await User.findById
       const post = await Post.findById(req.params.id).populate('user');
       const answers = await Answer.find({post: req.params.id}).populate('user').sort({ createdAt: "desc" }).lean();
-      res.render("post.ejs", { post: post, user: req.user, answers: answers });
+      res.render("post.ejs", { post: post, user: req.user, answers: answers });//used to have it as {post:post, user:req.user, answers:answers}
     } catch (err) {
       console.log(err);
     }

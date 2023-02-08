@@ -57,7 +57,8 @@
               
             </ul>
             <ul class="list-unstyled d-flex">
-              <% if(post.user.id == user.id){ %>
+              <% if(user == undefined){ %>
+              <% }else if(post.user.id == user.id){ %>
               <li><form
                 action="/post/deletePost/<%= post.id %>?_method=DELETE"
                 method="POST"
@@ -93,7 +94,8 @@
                   
                       <p class="card-text"><%= answers[i].answer%></p>
                       <p class="card-text"><small class="text-muted">Answered by <strong><%=answers[i].userName%></strong> <span class="text-info">on</span> <%=answers[i].createdAt.toDateString()%></small></p>
-                      <%if(user.userName == answers[i].userName){ %>
+                      <% if(user == undefined){ %>
+                      <%}else if(user.userName == answers[i].userName){ %>
                         <form action="/answer/deleteAnswer/<%=answers[i]._id%>?_method=DELETE" method="POST">
                           <button class="btn btn-outline-danger fa fa-trash " type="submit"></button>
                         </form>
